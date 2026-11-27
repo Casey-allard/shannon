@@ -80,12 +80,16 @@ Audits Lean 4 modules/files under ShannonC7/ for:
        erase verified zero-`evalConst` pure-math attributes, recursively enforced
        on nested `(attr := ...)` — failing closed on ALL unlisted/meta/Aesop/
        Simps/RPC/widget/FFI/delab/cpass attributes); positive config whitelists
-       for `decide` and `linarith`/`nlinarith`; unified `isForbiddenOptionName`
-       (`debug.*`, `sat.*`, `compiler.*`, `bootstrap.*`, `internal.*`,
-       `interpreter.*`, `aesop.*`, `says.*`, `leansearchclient.*`,
-       `statesearch.*`, `allowUnsafeReducibility`, `warn.sorry`,
-       `trace.profiler.{output,serve}`, incl. `Grind.setOption` with recursive
-       suffix extraction); package-wide
+       for `decide` and `linarith`/`nlinarith`; closed POSITIVE OPTION WHITELIST
+       (`isAllowedOptionName`) on all `set_option` / `Grind.setOption` commands
+       (permitting ONLY pure-math/linter/pp/resource-limit options such as
+       `linter.*`, `exponentiation.threshold`, `maxHeartbeats`, `maxRecDepth`,
+       `synthInstance.*`, `pp.*`, `autoImplicit`, `relaxedAutoImplicit`,
+       `backward.*`, `Elab.async` — failing closed on `debug.*`, `sat.*`,
+       `compiler.*`, `bootstrap.*`, `internal.*`, `interpreter.*`, `aesop.*`,
+       `says.*`, `leansearchclient.*`, `statesearch.*`, `allowUnsafeReducibility`,
+       `warn.sorry`, `trace.profiler.*`, and ALL unlisted/unknown options), plus
+       `isForbiddenOptionName` defense-in-depth on quoted Name literals; package-wide
        evaluator/admit-tactic AST blocklist (`by_elab`, `by_elabq`, `run_tac`,
        `run_tacq`, `include_str`, `trace`, `idbg`, `impossible`, `apply?`,
        `exact?`, `try?`, `Aesop` tactics & clauses, `eval%`, `from_lrat`,
@@ -359,9 +363,29 @@ def checkNameForbidden (n : Name) : Option String :=
     | .str .anonymous s => if forbiddenTokens.contains s then some s else none
     | _ => none
 
--- Unified forbidden `set_option` predicate: blocks `debug.*` (incl. `_root_.debug.*`),
--- external solver / compile-time I/O / HTTP server / compiler / bootstrap / internal /
--- interpreter / Aesop / search-client / sorry-suppression / unsafe-reducibility options.
+-- Closed POSITIVE WHITELIST of safe pure-math `set_option` names (fail-closed on ALL unlisted options).
+-- Permits only linter flags, numeric exponentiation/heartbeat/recursion/synthInstance limits,
+-- pretty-printing, implicit-binder, backward-compat, and async elaboration options.
+private def isAllowedOptionName (n : Name) : Bool :=
+  let comps := n.eraseMacroScopes.components
+  let comps := match comps with
+    | .str .anonymous "_root_" :: rest => rest
+    | _ => comps
+  match comps with
+  | .str .anonymous "linter" :: _ => true
+  | [.str .anonymous "exponentiation", .str .anonymous "threshold"] => true
+  | [.str .anonymous "maxHeartbeats"] => true
+  | [.str .anonymous "maxRecDepth"] => true
+  | [.str .anonymous "synthInstance", .str .anonymous "maxHeartbeats"] => true
+  | [.str .anonymous "synthInstance", .str .anonymous "maxSize"] => true
+  | .str .anonymous "pp" :: _ => true
+  | [.str .anonymous "autoImplicit"] => true
+  | [.str .anonymous "relaxedAutoImplicit"] => true
+  | .str .anonymous "backward" :: _ => true
+  | [.str .anonymous "Elab", .str .anonymous "async"] => true
+  | _ => false
+
+-- Defense-in-depth option blocklist for arbitrary quoted `Name` literals inside `exprHasBadLiteral`.
 private def isForbiddenOptionName (n : Name) : Bool :=
   let comps := n.eraseMacroScopes.components
   let comps := match comps with
@@ -2074,7 +2098,7 @@ private def checkSetOption (stx : Syntax) : Option String :=
   let optName := extractSetOptionName stx
   if optName.isAnonymous then
     some "malformed set_option"
-  else if isForbiddenOptionName optName then
+  else if !isAllowedOptionName optName || isForbiddenOptionName optName then
     some s!"set_option {optName.eraseMacroScopes}"
   else
     none
