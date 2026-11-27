@@ -1,0 +1,924 @@
+{
+  "meta": {
+    "python": "3.12.16",
+    "numpy": "2.5.5",
+    "scipy": "1.18.1",
+    "cvxpy": "1.9.3",
+    "mode": "full",
+    "theta_c7_exact": 3.317667207394096,
+    "theta_c7_compl_exact": 2.1099162641747427,
+    "total_elapsed_s": 20.17297672299901
+  },
+  "baselines": {
+    "theta": {
+      "K2": 0.9999999999999951,
+      "C5": 2.2360679775182115,
+      "Gilbert32": 5.333333334117409,
+      "Haemers27": 9.000000000923635,
+      "Schlafli27": 3.0000000013598505,
+      "C7": 3.3176672074244538,
+      "C7_compl": 2.10991626420889,
+      "C7_sq": 11.006915724697791
+    },
+    "theta_prime": {
+      "K2": 1.0,
+      "C5": 2.236067977578321,
+      "Gilbert32": 4.000000000661995,
+      "Haemers27": 9.00000000072944,
+      "Schlafli27": 3.000000000022304,
+      "C7": 3.3176672080022183,
+      "C7_compl": 2.1099162643990805,
+      "C7_sq": 11.006915701298666
+    },
+    "min_X": {
+      "K2": 7.47930032786794e-24,
+      "C5": 3.264637423587385e-17,
+      "Gilbert32": -0.020833333302234195,
+      "Haemers27": -3.2765776804773146e-16,
+      "Schlafli27": -8.216042885258319e-17,
+      "C7": 4.987643548037979e-17,
+      "C7_compl": -2.7477189562921358e-18,
+      "C7_sq": -5.541179713717331e-21
+    },
+    "lasserre_level2": {
+      "K2": 1.0000000023653568,
+      "C5": 2.000000005322573,
+      "Gilbert32": null,
+      "Haemers27": null,
+      "Schlafli27": null,
+      "C7": 3.0000000020106086,
+      "C7_compl": 2.000000014163336,
+      "C7_sq": null
+    },
+    "timings": {
+      "K2": {
+        "theta_s": 0.018032703002972994,
+        "theta_prime_s": 0.011810317002527881,
+        "las2_s": 0.011328456996125169
+      },
+      "C5": {
+        "theta_s": 0.010075424004753586,
+        "theta_prime_s": 0.011837113001092803,
+        "las2_s": 0.04063635900092777
+      },
+      "Gilbert32": {
+        "theta_s": 0.17450067800382385,
+        "theta_prime_s": 0.22007711300102528,
+        "las2_s": 0.0
+      },
+      "Haemers27": {
+        "theta_s": 0.07232354000007035,
+        "theta_prime_s": 0.12082767699757824,
+        "las2_s": 0.0
+      },
+      "Schlafli27": {
+        "theta_s": 0.06721091800136492,
+        "theta_prime_s": 0.11033772299560951,
+        "las2_s": 0.0
+      },
+      "C7": {
+        "theta_s": 0.011773596997954883,
+        "theta_prime_s": 0.01282402100332547,
+        "las2_s": 0.12303198299923679
+      },
+      "C7_compl": {
+        "theta_s": 0.010560795999481343,
+        "theta_prime_s": 0.01108240800385829,
+        "las2_s": 0.05420387999765808
+      },
+      "C7_sq": {
+        "theta_s": 0.85098343899881,
+        "theta_prime_s": 1.5705617330022505,
+        "las2_s": 0.0
+      }
+    }
+  },
+  "probe1": {
+    "support_stats": {
+      "K2": {
+        "n": 2,
+        "diag_edge_tri": [
+          2,
+          6,
+          0
+        ],
+        "std_support": 8,
+        "ST_std": 2.0,
+        "rho_std": 1.9999999999097673,
+        "fourier_support": 1,
+        "ST_fourier": 1.0,
+        "rho_fourier": 1.0000000004781326,
+        "F_theta_sinkhorn": 1.0,
+        "sinkhorn_dev": 0.5
+      },
+      "C5": {
+        "n": 5,
+        "diag_edge_tri": [
+          5,
+          30,
+          0
+        ],
+        "std_support": 35,
+        "ST_std": 5.0,
+        "rho_std": 4.999999999820513,
+        "fourier_support": 25,
+        "ST_fourier": 5.0,
+        "rho_fourier": 4.999999999758845,
+        "F_theta_sinkhorn": 4.999999999999999,
+        "sinkhorn_dev": 5.302702721365904e-13
+      },
+      "C7": {
+        "n": 7,
+        "diag_edge_tri": [
+          7,
+          42,
+          0
+        ],
+        "std_support": 49,
+        "ST_std": 7.0,
+        "rho_std": 6.999999999345478,
+        "fourier_support": 37,
+        "ST_fourier": 7.0,
+        "rho_fourier": 6.999999999334925,
+        "F_theta_sinkhorn": 6.999999999999999,
+        "sinkhorn_dev": 6.518119377574294e-13
+      },
+      "C7_compl": {
+        "n": 7,
+        "diag_edge_tri": [
+          7,
+          84,
+          42
+        ],
+        "std_support": 133,
+        "ST_std": 7.0,
+        "rho_std": 6.999999999196073,
+        "fourier_support": 49,
+        "ST_fourier": 7.0,
+        "rho_fourier": 6.999999999224865,
+        "F_theta_sinkhorn": 7.000000000000001,
+        "sinkhorn_dev": 3.652633751016765e-13
+      },
+      "C7_sq": {
+        "n": 49,
+        "diag_edge_tri": [
+          49,
+          1176,
+          1176
+        ],
+        "non_product_checks": {
+          "unweighted (1,1,1)": {
+            "diag_kk_m2k_nonzero_of_49": 49,
+            "min_abs": 0.26302377090042156,
+            "F_theta_lower": 49.0
+          },
+          "no-triangles (1,1,0)": {
+            "diag_kk_m2k_nonzero_of_49": 49,
+            "min_abs": 0.006988191360329211,
+            "F_theta_lower": 49.0
+          },
+          "neg-triangles (1,1,-0.25)": {
+            "diag_kk_m2k_nonzero_of_49": 49,
+            "min_abs": 0.19297929647530598,
+            "F_theta_lower": 49.0
+          },
+          "uniform-half (0.5,0.5,0.5)": {
+            "diag_kk_m2k_nonzero_of_49": 49,
+            "min_abs": 0.20294045687878218,
+            "F_theta_lower": 49.0
+          },
+          "lovasz-like": {
+            "diag_kk_m2k_nonzero_of_49": 49,
+            "min_abs": 0.006005976420006787,
+            "F_theta_lower": 49.0
+          }
+        }
+      }
+    },
+    "fourier_checks": {
+      "C7_analytic_max_err": 3.2806001387671316e-15,
+      "C7_plane_zeros_count": 12,
+      "C7_plane_zeros": [
+        [
+          1,
+          2,
+          4
+        ],
+        [
+          1,
+          4,
+          2
+        ],
+        [
+          2,
+          1,
+          4
+        ],
+        [
+          2,
+          4,
+          1
+        ],
+        [
+          3,
+          5,
+          6
+        ],
+        [
+          3,
+          6,
+          5
+        ],
+        [
+          4,
+          1,
+          2
+        ],
+        [
+          4,
+          2,
+          1
+        ],
+        [
+          5,
+          3,
+          6
+        ],
+        [
+          5,
+          6,
+          3
+        ],
+        [
+          6,
+          3,
+          5
+        ],
+        [
+          6,
+          5,
+          3
+        ]
+      ],
+      "C7_diag_kk_m2k_min_abs": 0.5128584316362768
+    },
+    "weighted_scan": {
+      "C7_num_critical_alphas": 10,
+      "C7_min_fourier_support": 37,
+      "C7_min_ST_fourier": 7.0,
+      "C7_min_rho_fourier": 6.999999998607516
+    },
+    "clique_cover": {
+      "C5_Tcc_F_theta": 2.999999999413135,
+      "C7_Tcc_F_theta": 3.999999999626173,
+      "C7_blowup2_per_copy": 3.5
+    },
+    "elapsed_s": 0.40973642100289
+  },
+  "probe2": {
+    "or_product_counterexample": {
+      "B5_edge_entry": -0.3819660112501051,
+      "B5_kron_at_00_12": -0.3819660112501051,
+      "restricted_to_S5_top_eig": 1.381966011250106,
+      "expected_if_strong_fitting": 5.0
+    },
+    "lp_lq_grid": [
+      {
+        "p": 1.0,
+        "q": 1.0,
+        "exponent": 1.0,
+        "C5": 3.0000002495724196,
+        "C7": 5.00000024957242,
+        "C5_passes_G1": true,
+        "C7_beats_theta": false
+      },
+      {
+        "p": 1.5,
+        "q": 1.5,
+        "exponent": 1.0,
+        "C5": 2.372757994701909,
+        "C7": 3.6477278003755274,
+        "C5_passes_G1": true,
+        "C7_beats_theta": false
+      },
+      {
+        "p": 2.0,
+        "q": 2.0,
+        "exponent": 1.0,
+        "C5": 2.236068087629865,
+        "C7": 3.3176674512225213,
+        "C5_passes_G1": true,
+        "C7_beats_theta": false
+      },
+      {
+        "p": 3.0,
+        "q": 3.0,
+        "exponent": 1.0,
+        "C5": 2.3727580038812333,
+        "C7": 3.647727800375527,
+        "C5_passes_G1": true,
+        "C7_beats_theta": false
+      },
+      {
+        "p": 1.2,
+        "q": 6.0,
+        "exponent": 0.33333333333333326,
+        "C5": 2.0040493666563988,
+        "C7": 3.0058668434494993,
+        "C5_passes_G1": false,
+        "C7_beats_theta": true
+      },
+      {
+        "p": 1.5,
+        "q": 3.0,
+        "exponent": 0.6666666666666667,
+        "C5": 2.092333066540702,
+        "C7": 3.1556758038821253,
+        "C5_passes_G1": false,
+        "C7_beats_theta": true
+      },
+      {
+        "p": 1.8,
+        "q": 2.0,
+        "exponent": 0.9444444444444444,
+        "C5": 2.216952567018136,
+        "C7": 3.307638222252312,
+        "C5_passes_G1": false,
+        "C7_beats_theta": true
+      },
+      {
+        "p": 2.0,
+        "q": 4.0,
+        "exponent": 0.75,
+        "C5": 2.247502179102039,
+        "C7": 3.4554636959610856,
+        "C5_passes_G1": true,
+        "C7_beats_theta": false
+      }
+    ],
+    "min_spectral_norm_dual": {
+      "K2": 0.9999999999337768,
+      "C5": 2.2360679774479393,
+      "Gilbert32": 8.00000000287218,
+      "Haemers27": 8.99999999974397,
+      "Schlafli27": 5.400000002910326,
+      "C7": 3.31766720736928,
+      "C7_compl": 2.10991626476355
+    },
+    "theta_gamma2": {
+      "values": {
+        "K2": 1.0000000000101663,
+        "C5": 2.236067979332475,
+        "Gilbert32": 5.333333613307654,
+        "Haemers27": 9.000009844374757,
+        "Schlafli27": 3.0000000014143597,
+        "C7": 3.317667217436198,
+        "C7_compl": 2.1099162698207063
+      },
+      "max_asymmetry": {
+        "K2": 0.0,
+        "C5": 1.4377388168895777e-13,
+        "Gilbert32": 5.495603971894525e-15,
+        "Haemers27": 1.538769112130467e-13,
+        "Schlafli27": 8.215650382226158e-15,
+        "C7": 1.3322676295501878e-15,
+        "C7_compl": 3.6637359812630166e-15
+      }
+    },
+    "shifted_gamma2": [
+      {
+        "graph": "C5",
+        "c": 0.5,
+        "gamma2": 1.1583592135077125,
+        "implied_bound": 2.2360679775124335
+      },
+      {
+        "graph": "C5",
+        "c": 1.0,
+        "gamma2": 1.2111456198798074,
+        "implied_bound": 2.236067979849339
+      },
+      {
+        "graph": "C5",
+        "c": 1.2360679774997898,
+        "gamma2": 1.236067977491304,
+        "implied_bound": 2.2360679774903027
+      },
+      {
+        "graph": "C7",
+        "c": 0.5,
+        "gamma2": 1.5957501740468425,
+        "implied_bound": 3.3176672130821157
+      },
+      {
+        "graph": "C7",
+        "c": 1.0,
+        "gamma2": 1.7943335638142053,
+        "implied_bound": 3.317667208730023
+      },
+      {
+        "graph": "C7",
+        "c": 2.0,
+        "gamma2": 2.1915003451047186,
+        "implied_bound": 3.3176672075988987
+      },
+      {
+        "graph": "C7",
+        "c": 2.317667207394096,
+        "gamma2": 2.3176672096318964,
+        "implied_bound": 3.317667211106235
+      },
+      {
+        "graph": "C7",
+        "c": 3.0,
+        "gamma2": 3.0000000134136524,
+        "implied_bound": 4.000000026827305
+      }
+    ],
+    "schatten_p": {
+      "0.01": {
+        "Haemers27_explicit_I_minus_A": 7.13068988015832,
+        "beats_theta_Haemers27": true,
+        "C5_opt": 3.0139111001134378,
+        "C7_opt": 4.020866650170157,
+        "C7_clique_cover_exact": 4.020866650170157
+      },
+      "0.05": {
+        "Haemers27_explicit_I_minus_A": 7.67846446039256,
+        "beats_theta_Haemers27": true,
+        "C5_opt": 3.070529847682755,
+        "C7_opt": 4.105794771524133,
+        "C7_clique_cover_exact": 4.105794771524133
+      },
+      "0.1": {
+        "Haemers27_explicit_I_minus_A": 8.42311813272341,
+        "beats_theta_Haemers27": true,
+        "C5_opt": 3.1435469250725863,
+        "C7_opt": 4.215320387608879,
+        "C7_clique_cover_exact": 4.215320387608879
+      },
+      "0.12": {
+        "Haemers27_explicit_I_minus_A": 8.740948820934584,
+        "beats_theta_Haemers27": true,
+        "C5_opt": 3.173469725052116,
+        "C7_opt": 4.260204587578174,
+        "C7_clique_cover_exact": 4.260204587578174
+      }
+    },
+    "elapsed_s": 12.983504936993995
+  },
+  "probe3": {
+    "vrana": {
+      "C7_distributions": {
+        "uniform": 3.3176672066545208,
+        "peaked": 2.9272689584748037,
+        "linear_ramp": 2.9733478052471036,
+        "indep_set_3": 2.999999999953345,
+        "single_edge": 1.0000000000688007
+      },
+      "C5_disjoint_K1_theta": 3.2360679766741094,
+      "C5_disjoint_K1_uniform": 3.068412536390116,
+      "C5_disjoint_K1_optimal_P": 3.2360679769908196
+    },
+    "sibson_petz_renyi": {
+      "C5": {
+        "0.0": 2.2360679774997894,
+        "0.25": 2.6848210870262172,
+        "0.5": 2.834576353408995,
+        "1.0": 2.917497740735781,
+        "2.0": 2.9590967415166127,
+        "-1.0": 5.0
+      },
+      "C7": {
+        "0.0": 3.317667207394095,
+        "0.25": 4.023797552913226,
+        "0.5": 4.331798280656351,
+        "1.0": 4.607280569505909,
+        "2.0": 4.788569147069122,
+        "-1.0": 6.999999999999999
+      }
+    },
+    "primal_logdet_barrier": {
+      "0.0001": {
+        "C5": 2.2358680122862027,
+        "C7": 3.317267768660995,
+        "Gilbert32": null
+      },
+      "0.01": {
+        "C5": 2.2162419112285097,
+        "C7": 3.2780147139294327,
+        "Gilbert32": null
+      },
+      "0.1": {
+        "C5": 2.053479705020101,
+        "C7": 2.9519147309193667,
+        "Gilbert32": 3.7690958536260792
+      }
+    },
+    "asymmetric_rho_B": {
+      "C5": 1.351606207590409,
+      "C7": 2.4631602873539755
+    },
+    "perron_frobenius_B_ge_0": {
+      "C5": 3.0,
+      "C7": 5.0,
+      "Gilbert32": 17.0,
+      "C5_sq": 17.0
+    },
+    "elapsed_s": 3.1753095390013186
+  },
+  "gates": [
+    {
+      "name": "lovasz_theta",
+      "values": {
+        "K2": 0.9999999999999951,
+        "C5": 2.2360679775182115,
+        "Gilbert32": 5.333333334117409,
+        "Haemers27": 9.000000000923635,
+        "Schlafli27": 3.0000000013598505,
+        "C7": 3.3176672074244538,
+        "C7_compl": 2.10991626420889,
+        "C7_sq": 11.006915724697791
+      },
+      "evaluated_count": 8,
+      "total_benchmarks": 8,
+      "missing_graphs": [],
+      "complete_coverage": true,
+      "g1_pass": true,
+      "g1_failures": [],
+      "g2_pass": true,
+      "g3_pass": true,
+      "g4_pass": true,
+      "all_checked_pass": true,
+      "all_pass": true,
+      "beats_theta_c7": false,
+      "breakthrough_trigger": false,
+      "verdict": "FULL_PASS",
+      "note": "Baseline SDP upper bound"
+    },
+    {
+      "name": "schrijver_theta_prime",
+      "values": {
+        "K2": 1.0,
+        "C5": 2.236067977578321,
+        "Gilbert32": 4.000000000661995,
+        "Haemers27": 9.00000000072944,
+        "Schlafli27": 3.000000000022304,
+        "C7": 3.3176672080022183,
+        "C7_compl": 2.1099162643990805,
+        "C7_sq": 11.006915701298666
+      },
+      "evaluated_count": 8,
+      "total_benchmarks": 8,
+      "missing_graphs": [],
+      "complete_coverage": true,
+      "g1_pass": false,
+      "g1_failures": [
+        "Gilbert32(4.000000 < 4.472136)"
+      ],
+      "g2_pass": true,
+      "g3_pass": true,
+      "g4_pass": true,
+      "all_checked_pass": false,
+      "all_pass": false,
+      "beats_theta_c7": false,
+      "breakthrough_trigger": false,
+      "verdict": "FAIL",
+      "note": "Killed by Gilbert-32 (4 < sqrt(20))"
+    },
+    {
+      "name": "lasserre_level2",
+      "values": {
+        "K2": 1.0000000023653568,
+        "C5": 2.000000005322573,
+        "Gilbert32": null,
+        "Haemers27": null,
+        "Schlafli27": null,
+        "C7": 3.0000000020106086,
+        "C7_compl": 2.000000014163336,
+        "C7_sq": null
+      },
+      "evaluated_count": 4,
+      "total_benchmarks": 8,
+      "missing_graphs": [
+        "Gilbert32",
+        "Haemers27",
+        "Schlafli27",
+        "C7_sq"
+      ],
+      "complete_coverage": false,
+      "g1_pass": false,
+      "g1_failures": [
+        "C5(2.000000 < 2.236068)",
+        "C7(3.000000 < 3.258828)",
+        "C7_compl(2.000000 < 2.030543)"
+      ],
+      "g2_pass": null,
+      "g3_pass": null,
+      "g4_pass": false,
+      "all_checked_pass": false,
+      "all_pass": false,
+      "beats_theta_c7": true,
+      "breakthrough_trigger": false,
+      "verdict": "FAIL",
+      "note": "Killed by C5, C7, C7_compl"
+    },
+    {
+      "name": "min_theta_minrank_hybrid",
+      "values": {
+        "K2": 0.9999999999999951,
+        "C5": 2.2360679775182115,
+        "Gilbert32": 5.333333334117409,
+        "Haemers27": 7.0,
+        "Schlafli27": 3.0,
+        "C7": 3.3176672074244538,
+        "C7_compl": 2.10991626420889,
+        "C7_sq": 11.006915724697791
+      },
+      "evaluated_count": 8,
+      "total_benchmarks": 8,
+      "missing_graphs": [],
+      "complete_coverage": true,
+      "g1_pass": true,
+      "g1_failures": [],
+      "g2_pass": true,
+      "g3_pass": false,
+      "g4_pass": true,
+      "all_checked_pass": false,
+      "all_pass": false,
+      "beats_theta_c7": false,
+      "breakthrough_trigger": false,
+      "verdict": "FAIL",
+      "note": "Killed by Gate G3 (7*3 = 21 < 27)"
+    },
+    {
+      "name": "probe1_clique_3tensor_F_theta",
+      "values": {
+        "K2": 1.0,
+        "C5": 5.0,
+        "C7": 7.0,
+        "C7_compl": 7.0,
+        "C7_sq": 49.0
+      },
+      "evaluated_count": 5,
+      "total_benchmarks": 8,
+      "missing_graphs": [
+        "Gilbert32",
+        "Haemers27",
+        "Schlafli27"
+      ],
+      "complete_coverage": false,
+      "g1_pass": true,
+      "g1_failures": [],
+      "g2_pass": true,
+      "g3_pass": null,
+      "g4_pass": true,
+      "all_checked_pass": true,
+      "all_pass": false,
+      "beats_theta_c7": false,
+      "breakthrough_trigger": false,
+      "verdict": "PARTIAL_CHECKED_PASS",
+      "note": "Collapses to n on cycles (blowup clique-cover = 3.5)"
+    },
+    {
+      "name": "probe2a_beta_1.5_3.0",
+      "values": {
+        "C5": 2.092333066540702,
+        "C7": 3.1556758038821253
+      },
+      "evaluated_count": 2,
+      "total_benchmarks": 8,
+      "missing_graphs": [
+        "K2",
+        "Gilbert32",
+        "Haemers27",
+        "Schlafli27",
+        "C7_compl",
+        "C7_sq"
+      ],
+      "complete_coverage": false,
+      "g1_pass": false,
+      "g1_failures": [
+        "C5(2.092333 < 2.236068)",
+        "C7(3.155676 < 3.258828)"
+      ],
+      "g2_pass": null,
+      "g3_pass": null,
+      "g4_pass": null,
+      "all_checked_pass": false,
+      "all_pass": false,
+      "beats_theta_c7": true,
+      "breakthrough_trigger": false,
+      "verdict": "FAIL",
+      "note": "OR-product bound only; killed by C5 (Gate G1)"
+    },
+    {
+      "name": "probe2a_min_B_2to2",
+      "values": {
+        "K2": 0.9999999999337768,
+        "C5": 2.2360679774479393,
+        "Gilbert32": 8.00000000287218,
+        "Haemers27": 8.99999999974397,
+        "Schlafli27": 5.400000002910326,
+        "C7": 3.31766720736928,
+        "C7_compl": 2.10991626476355
+      },
+      "evaluated_count": 7,
+      "total_benchmarks": 8,
+      "missing_graphs": [
+        "C7_sq"
+      ],
+      "complete_coverage": false,
+      "g1_pass": true,
+      "g1_failures": [],
+      "g2_pass": null,
+      "g3_pass": true,
+      "g4_pass": true,
+      "all_checked_pass": true,
+      "all_pass": false,
+      "beats_theta_c7": false,
+      "breakthrough_trigger": false,
+      "verdict": "PARTIAL_CHECKED_PASS",
+      "note": "Equals theta on C5/C7, worse on Gil32/Schlafli27"
+    },
+    {
+      "name": "probe2b_theta_gamma2",
+      "values": {
+        "K2": 1.0000000000101663,
+        "C5": 2.236067979332475,
+        "Gilbert32": 5.333333613307654,
+        "Haemers27": 9.000009844374757,
+        "Schlafli27": 3.0000000014143597,
+        "C7": 3.317667217436198,
+        "C7_compl": 2.1099162698207063
+      },
+      "evaluated_count": 7,
+      "total_benchmarks": 8,
+      "missing_graphs": [
+        "C7_sq"
+      ],
+      "complete_coverage": false,
+      "g1_pass": true,
+      "g1_failures": [],
+      "g2_pass": null,
+      "g3_pass": true,
+      "g4_pass": true,
+      "all_checked_pass": true,
+      "all_pass": false,
+      "beats_theta_c7": false,
+      "breakthrough_trigger": false,
+      "verdict": "PARTIAL_CHECKED_PASS",
+      "note": "Collapses identically to lovasz_theta"
+    },
+    {
+      "name": "probe2b_schatten_Psi_0.05",
+      "values": {
+        "C5": 3.070529847682755,
+        "Haemers27": 7.67846446039256,
+        "C7": 4.105794771524133
+      },
+      "evaluated_count": 3,
+      "total_benchmarks": 8,
+      "missing_graphs": [
+        "K2",
+        "Gilbert32",
+        "Schlafli27",
+        "C7_compl",
+        "C7_sq"
+      ],
+      "complete_coverage": false,
+      "g1_pass": true,
+      "g1_failures": [],
+      "g2_pass": null,
+      "g3_pass": null,
+      "g4_pass": null,
+      "all_checked_pass": true,
+      "all_pass": false,
+      "beats_theta_c7": false,
+      "breakthrough_trigger": false,
+      "verdict": "PARTIAL_CHECKED_PASS",
+      "note": "Valid submult; beats theta on Haemers-27 (7.68<9), stuck >4 on C7"
+    },
+    {
+      "name": "probe3a_vrana_max_P",
+      "values": {
+        "C7": 3.3176672066545208
+      },
+      "evaluated_count": 1,
+      "total_benchmarks": 8,
+      "missing_graphs": [
+        "K2",
+        "C5",
+        "Gilbert32",
+        "Haemers27",
+        "Schlafli27",
+        "C7_compl",
+        "C7_sq"
+      ],
+      "complete_coverage": false,
+      "g1_pass": true,
+      "g1_failures": [],
+      "g2_pass": null,
+      "g3_pass": null,
+      "g4_pass": null,
+      "all_checked_pass": true,
+      "all_pass": false,
+      "beats_theta_c7": false,
+      "breakthrough_trigger": false,
+      "verdict": "PARTIAL_CHECKED_PASS",
+      "note": "Vertex-transitive concavity collapse to theta(C7)"
+    },
+    {
+      "name": "probe3b_sibson_alpha_0.5",
+      "values": {
+        "C5": 2.834576353408995,
+        "C7": 4.331798280656351
+      },
+      "evaluated_count": 2,
+      "total_benchmarks": 8,
+      "missing_graphs": [
+        "K2",
+        "Gilbert32",
+        "Haemers27",
+        "Schlafli27",
+        "C7_compl",
+        "C7_sq"
+      ],
+      "complete_coverage": false,
+      "g1_pass": true,
+      "g1_failures": [],
+      "g2_pass": null,
+      "g3_pass": null,
+      "g4_pass": null,
+      "all_checked_pass": true,
+      "all_pass": false,
+      "beats_theta_c7": false,
+      "breakthrough_trigger": false,
+      "verdict": "PARTIAL_CHECKED_PASS",
+      "note": "Monotone increasing in alpha in [0,2]: >= theta"
+    },
+    {
+      "name": "probe3b_logdet_mu_0.01",
+      "values": {
+        "C5": 2.2162419112285097,
+        "C7": 3.2780147139294327
+      },
+      "evaluated_count": 2,
+      "total_benchmarks": 8,
+      "missing_graphs": [
+        "K2",
+        "Gilbert32",
+        "Haemers27",
+        "Schlafli27",
+        "C7_compl",
+        "C7_sq"
+      ],
+      "complete_coverage": false,
+      "g1_pass": false,
+      "g1_failures": [
+        "C5(2.216242 < 2.236068)"
+      ],
+      "g2_pass": null,
+      "g3_pass": null,
+      "g4_pass": null,
+      "all_checked_pass": false,
+      "all_pass": false,
+      "beats_theta_c7": true,
+      "breakthrough_trigger": false,
+      "verdict": "FAIL",
+      "note": "Killed by C5 for every mu > 0 (Gate G1)"
+    },
+    {
+      "name": "probe3c_asym_rho_B",
+      "values": {
+        "C5": 1.351606207590409,
+        "C7": 2.4631602873539755
+      },
+      "evaluated_count": 2,
+      "total_benchmarks": 8,
+      "missing_graphs": [
+        "K2",
+        "Gilbert32",
+        "Haemers27",
+        "Schlafli27",
+        "C7_compl",
+        "C7_sq"
+      ],
+      "complete_coverage": false,
+      "g1_pass": false,
+      "g1_failures": [
+        "C5(1.351606 < 2.236068)",
+        "C7(2.463160 < 3.258828)"
+      ],
+      "g2_pass": null,
+      "g3_pass": null,
+      "g4_pass": null,
+      "all_checked_pass": false,
+      "all_pass": false,
+      "beats_theta_c7": true,
+      "breakthrough_trigger": false,
+      "verdict": "FAIL",
+      "note": "Non-monotone on principal submatrices; killed by C5 & C7"
+    }
+  ]
+}
