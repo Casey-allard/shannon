@@ -64,3 +64,34 @@ Current iteration: 1 / 32 (QUOTA ALERT on `M1_gen6` escalated to Sentinel at 06:
   - `./scripts/verify_axioms.sh --verbose ShannonC7.ComplementLower ShannonC7.StructuralBounds ShannonC7.Tests.StructuralTests`: **PASSED** (`784` total declarations / `117` public theorems across `3` modules; `0` forbidden tokens; `axioms ⊆ [propext, Classical.choice, Quot.sound]`).
   - `find verify -name "__pycache__" -o -name "*.pyc"`: empty.
   - (Pending M4 final integration: importing `ComplementLower` and `StructuralBounds` into `Main.lean` and updating `RESULTS.md`.)
+
+---
+
+## Milestone M1 (`LowerFrontier`) — 2026-11-27T22:15:00Z
+
+### Track L1 — Heterogeneous Multi-Layer Substitution $d=620$ Lower-Bound Breakthrough (`ShannonC7/TandonLower.lean`)
+- **New pure-kernel Lean 4 lower bound (`ShannonC7.TandonLower.c7_lower_m1` at $d=620$):**
+  $$\frac{3258835618853760}{10^{15}} = 3.258835618853760 \le \Theta(C_7)$$
+  certified via a 319-digit witness `m620Card` in $C_7^{\boxtimes 620}$ (`c7_lower_m1_card`, `c7_lower_m1_pow_le`, `c7_lower_m1_sharp`), strictly surpassing:
+  - `PortfolioLower.lean` (`3.258827798879807`, $d=220$, `c7_lower_m1_gt_portfolio`),
+  - BPZ v2 (`3.258827985920007`, $d=500$, `native_decide`, `c7_lower_m1_gt_bpz_v2`),
+  - Tandon (`arXiv:2608.30273`, `3.258832620353266`, $d=500$, `c7_lower_m1_gt_tandon`).
+- **New Lean 4 modules (pure kernel, zero `sorry` / `native_decide` / `partial`):**
+  - `ShannonC7/LayeredSubstLower.lean`: pure-kernel multi-arity `Subst` / `Code` / `Realisation.multiSubst` infrastructure, `rfl`-certified BPZ substitution/code tables (`T2a_ok`, `T3b_ok`, `C4a_ok`, `S2a`, `S3b`, `K4a`), and `HetLeftInput` / `Realisation.hetGao` / `w_hetGao` / `hetGao_P_O_eq`.
+  - `ShannonC7/TandonDataLower.lean`: pure-kernel 5D tries (`tB5`..`tX15`), `T5_fn` / `T5_inv`, 20-set 5D rectangle partition, 4-bit closed-neighborhood signatures, and `Vec16` histogram lemmas.
+  - `ShannonC7/TandonLower.lean`: in-kernel certificate proofs of `C₁ = 27,488` (`J10_out_card`), `C₂ = 12,839,823` (`J15_out_card`), and `C₄ = 841,760,069,965,664` (`J30pp_out_card`), building `R40_s0`, `R65_s1`, `R50_s2`, `R155 = S3b(R40_s0, R65_s1, R50_s2)`, and `m620Card_le_pi` (`K4a(R155^4)`).
+  - `ShannonC7/Tests/TandonLowerTests.lean`: contract checks, layer weights ($d = 5..155$), strict improvement & sharpness checks, and `#print axioms`.
+- **Supporting witness & verification tooling (`search/lower/`):**
+  - `search/lower/witnesses/m1_tandon_d620.json`, `search/lower/verify_m1_tandon.py`, `search/lower/M1_SEARCH_NOTES.md`.
+- **Honest dead-end summary (`search/lower/M1_SEARCH_NOTES.md`):**
+  - Exhaustive `64,538,880`-automorphism `Aut(C_7^5)` 10D `T'` scan peaked at `27,480` (none `> 27,480`).
+  - Exhaustive `282,475,249`-vertex 10D `0`/`1`-tight swap scan on `J^+` found `0` improvements beyond `C₁ = 27,488`.
+  - Track S1 5D probes (`PortSystem.ofColoring` on `R_{5,7}` / `R_9` peaked at `314`/`313`; `AuxPartition` ILS capped at `322`; `C_7^5` MIS probe peaked at `367`; non-367 `b >= 8 + 11*(367-a)` ILS peaked at `3625 < 4045`).
+  - Track S2 `Γ_Q^⊠2` exact CP-SAT optimum `= 134,689 < 134,753 = |I₁₀|`.
+  - `S3` / `K4` CP-SAT over `Letter.sep` and `1,036`-point asymmetric `K4a` coordinate polish yielded no improvement over `S3b` + `K4a`.
+- **Verified clean:**
+  - `LEAN_NUM_THREADS=4 lake build ShannonC7.LayeredSubstLower ShannonC7.TandonDataLower ShannonC7.TandonLower ShannonC7.Tests.TandonLowerTests`: `2059` jobs, `0` errors, `0` warnings.
+  - `./scripts/verify_axioms.sh --verbose ShannonC7.LayeredSubstLower ShannonC7.TandonDataLower ShannonC7.TandonLower ShannonC7.Tests.TandonLowerTests`: **PASSED** (`1672` total declarations, `530` public theorems, `0` forbidden tokens, `axioms ⊆ [propext, Classical.choice, Quot.sound]`).
+  - `python3 -B search/lower/verify_m1_tandon.py`: **PASSED** (`C1=27488`, `C2=12839823`, `C4=841760069965664`, 319-digit `M620`, `3.258835618853760`).
+  - `find verify -name "__pycache__" -o -name "*.pyc"`: empty.
+  - (Pending M4 final integration: promoting `ShannonC7.TandonLower.c7_lower_m1` into `ShannonC7/Main.lean`, `RESULTS.md`, and `verify/cross_check.py`, and updating the default `180s` timeout in `verify/` since the full 29-module `./scripts/verify_axioms.sh` audit takes `~224s`.)
