@@ -288,7 +288,7 @@ def _t3_p14(ctx: SuiteContext):
 
 
 def _t3_p15(ctx: SuiteContext):
-    # F01 x F14: Clean lake build -j 2 + verify_axioms.sh + repo-wide static hygiene all pass together
+    # F01 x F14: Clean LEAN_NUM_THREADS=2 lake build + verify_axioms.sh + repo-wide static hygiene all pass together
     ok_h, code_h, msg_h, info_h = ctx.scan_all_lean_files()
     if not ok_h:
         return False, code_h, msg_h, info_h
@@ -298,7 +298,7 @@ def _t3_p15(ctx: SuiteContext):
     ok_ax, code_ax, msg_ax, info_ax = ctx.run_verify_axioms_script()
     if not ok_ax:
         return False, code_ax, msg_ax, info_ax
-    return True, "OK", "Build (-j 2), verify_axioms.sh, and global hygiene all succeeded under v4.32.2", info_ax
+    return True, "OK", "Build (LEAN_NUM_THREADS=2), verify_axioms.sh, and global hygiene all succeeded under v4.32.2", info_ax
 
 
 def _t3_p16(ctx: SuiteContext):
@@ -336,6 +336,6 @@ def get_tier3_tests() -> list[TestCase]:
         TestCase("T3-P12", "T3", "F04xF11xF12", "Upper-bound barriers align: cube=33, Haemers, Galois & all 5 obstruction graphs", _t3_p12),
         TestCase("T3-P13", "T3", "F09xF10xF13", "Main.lean, RESULTS.md & LOWER_RESEARCH_REPORT.md agree on certified bound", _t3_p13),
         TestCase("T3-P14", "T3", "F11xF12xF13", "Main.lean, RESULTS.md, UPPER_RESEARCH_REPORT.md & obstruction_testbed.py aligned", _t3_p14),
-        TestCase("T3-P15", "T3", "F01xF14", "Clean lake build -j 2 + scripts/verify_axioms.sh + repo-wide hygiene pass", _t3_p15),
+        TestCase("T3-P15", "T3", "F01xF14", "Clean LEAN_NUM_THREADS=2 lake build + scripts/verify_axioms.sh + repo-wide hygiene pass", _t3_p15),
         TestCase("T3-P16", "T3", "F13xF14", "All 16 § 4.4 exports, 24 #print axioms, opaque-box audit & RESULTS.md unified", _t3_p16),
     ]

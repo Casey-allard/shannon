@@ -303,7 +303,7 @@ def _t4_w08(ctx: SuiteContext):
 
 def get_tier4_tests() -> list[TestCase]:
     return [
-        TestCase("T4-W01", "T4", "WORKLOAD", "Clean Lean 4 project build (-j 2) & RAM resource audit", _t4_w01),
+        TestCase("T4-W01", "T4", "WORKLOAD", "Clean Lean 4 project build (LEAN_NUM_THREADS=2) & RAM resource audit", _t4_w01),
         TestCase("T4-W02", "T4", "WORKLOAD", "Opaque-box verify/e2e_audit.lean compilation & textbook-equivalence audit", _t4_w02),
         TestCase("T4-W03", "T4", "WORKLOAD", "Exhaustive #print axioms TCB whitelist audit (all 24 declarations)", _t4_w03),
         TestCase("T4-W04", "T4", "WORKLOAD", "Repository-wide comment/string-aware static hygiene audit", _t4_w04),

@@ -952,6 +952,6 @@ def get_tier1_tests() -> list[TestCase]:
         TestCase("T1-F14-01", "T1", "F14", "Global static hygiene scan across ShannonC7/**/*.lean & verify/e2e_audit.lean", _t1_f14_01),
         TestCase("T1-F14-02", "T1", "F14", "Exhaustive #print axioms whitelist across all 24 audited declarations", _t1_f14_02),
         TestCase("T1-F14-03", "T1", "F14", "scripts/verify_axioms.sh executes and exits 0", _t1_f14_03),
-        TestCase("T1-F14-04", "T1", "F14", "lake build -j 2 ShannonC7.Main exits 0 within 7.8 GiB RAM guardrail", _t1_f14_04),
+        TestCase("T1-F14-04", "T1", "F14", "LEAN_NUM_THREADS=2 lake build ShannonC7.Main exits 0 within 7.8 GiB RAM guardrail", _t1_f14_04),
         TestCase("T1-F14-05", "T1", "F14", "Cross-report numeric consistency across RESULTS.md & lower/upper reports", _t1_f14_05),
     ]

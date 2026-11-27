@@ -384,7 +384,7 @@ class SuiteContext:
         return True, "OK", "Pre-flight OK"
 
     def run_lean_build(self) -> LeanBuildRun:
-        """Build `ShannonC7.Main` safely (`lake build -j 2 ShannonC7.Main`) once per run."""
+        """Build `ShannonC7.Main` safely (`LEAN_NUM_THREADS=2 lake build ShannonC7.Main`) once per run."""
         if self._build_result is not None:
             return self._build_result
 
@@ -414,9 +414,10 @@ class SuiteContext:
         lake = self.find_tool("lake")
         assert lake is not None
         out = run_subprocess_safe(
-            [str(lake), "build", "-j", "2", "ShannonC7.Main"],
+            [str(lake), "build", "ShannonC7.Main"],
             cwd=self.project_dir,
             timeout=self.build_timeout,
+            extra_env={"LEAN_NUM_THREADS": "2"},
         )
         combined = out.stdout + ("\n" + out.stderr if out.stderr else "")
         has_err = bool(_LEAN_ERROR_LINE_RE.search(combined))
@@ -424,7 +425,7 @@ class SuiteContext:
             res = LeanBuildRun(
                 ok=False,
                 code="TIMEOUT",
-                message=f"`lake build -j 2 ShannonC7.Main` timed out after {self.build_timeout}s",
+                message=f"`LEAN_NUM_THREADS=2 lake build ShannonC7.Main` timed out after {self.build_timeout}s",
                 returncode=out.returncode,
                 stdout=out.stdout,
                 stderr=out.stderr,
@@ -437,7 +438,7 @@ class SuiteContext:
             res = LeanBuildRun(
                 ok=False,
                 code="LEAN_BUILD_FAILED",
-                message=f"`lake build -j 2 ShannonC7.Main` failed (rc={out.returncode}): {' | '.join(tail)}",
+                message=f"`LEAN_NUM_THREADS=2 lake build ShannonC7.Main` failed (rc={out.returncode}): {' | '.join(tail)}",
                 returncode=out.returncode,
                 stdout=out.stdout,
                 stderr=out.stderr,
@@ -459,7 +460,7 @@ class SuiteContext:
             res = LeanBuildRun(
                 ok=True,
                 code="OK",
-                message=f"`lake build -j 2 ShannonC7.Main` succeeded in {out.elapsed_s:.2f}s (max_rss={out.max_rss_kb // 1024} MiB)",
+                message=f"`LEAN_NUM_THREADS=2 lake build ShannonC7.Main` succeeded in {out.elapsed_s:.2f}s (max_rss={out.max_rss_kb // 1024} MiB)",
                 returncode=0,
                 stdout=out.stdout,
                 stderr=out.stderr,
