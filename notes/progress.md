@@ -29,3 +29,38 @@ Last visited: 2026-11-27T06:09:45Z
 
 ## Iteration Status
 Current iteration: 1 / 32 (QUOTA ALERT on `M1_gen6` escalated to Sentinel at 06:09Z; `M4` Wave 8 & `E2E` Wave r14 still running; exact checkpoint persisted on disk!)
+
+---
+
+## Milestone M3 (`ComplementAndStructural`) — 2026-11-27T20:28:00Z
+
+### Track L2 — Complement $\overline{C_7}$ Lower-Bound Breakthrough (`ShannonC7/ComplementLower.lean`)
+- **Finite-power & asymptotic `PartGadget` records (beating Bohman–Holzman $17^{1/4} \approx 2.030543185$):**
+  - Direct $d=5$ code (`C35`, `4orb+ext` in $\overline{C_7}^{\boxtimes 5}$): `alpha_c7_compl_pow5_ge_35` ($\alpha(\overline{C_7}^{\boxtimes 5}) \ge 35$) and `c7_compl_lower_35` ($35^{1/5} \le \Theta(\overline{C_7})$, $\approx 2.036168077$).
+  - Pure-kernel `PartGadget` `(35, 1, 35, 23, 7, 5)` (`search/lower/compl_witnesses/compl_c7_d5_partgadget.json`) lifted via an 8-node `prodStd` + `prodXupg1` DAG to $d=140$ (`complFrontierCard = 17630403766597908028404660108047961464583300`):
+    - `c7_compl_lower_frontier`: `2036581869953041 / 10^15 ≤ shannonCapacity (SimpleGraph.cycleGraph 7)ᶜ` ($\approx 2.036581869953041$).
+    - `c7_compl_lower_gt_bh`: `(17 : ℝ) ^ (1 / 4 : ℝ) < shannonCapacity (SimpleGraph.cycleGraph 7)ᶜ`.
+    - `c7_compl_lower_gt_35`: `(35 : ℝ) ^ (1 / 5 : ℝ) < shannonCapacity (SimpleGraph.cycleGraph 7)ᶜ`.
+- **Supporting search tooling (`search/lower/compl_*`):** `compl_d5_sat.py`, `compl_d4_exact.cpp`, `compl_d5_search.cpp`, `compl_orbit_search.cpp`, `compl_d5_blowup.cpp`, `compl_d5_opt_gadget.cpp`, `compl_gadget_search.cpp`, `compl_gadget_search.py`, `compl_emit_lean.py`.
+- **Honest open leads & dead ends:**
+  - $d=3$: exact $\alpha(\overline{C_7}^{\boxtimes 3}) = 8$ (`OPTIMAL` via CP-SAT).
+  - $d=4$: $K_3$-slice double counting gives $\alpha(\overline{C_7}^{\boxtimes 4}) \le 18$ across 4 canonical profiles; exact `17` vs `18` timed out $>90\text{s}$ on Profile 0, so exact $\alpha(\overline{C_7}^{\boxtimes 4}) \in \{17, 18\}$ remains open (discovered $d=4$ `PartGadget` `(17, 1, 17, 7, 5, 5)` reaching `2.03180354` at $d=64$, superseded by $d=5$).
+  - $d=5$: exhaustive 5-orbit canonical scan (28 generators, 6,720 size-35 codes), `2.15M` 4-orbit extensions, 18,270 LNS steps, and 663k ILS steps achieved max `35` (`36..41` remain open). Pure 5-orbit `S35` failed `c=35` in `Aut`-scans and negation-symmetric ILS maxed at `33`/`34`, whereas non-orbit `C35` succeeded.
+  - $d=6, 7$: orbit search + LNS reached `70` ($d=6$, `71..88` open) and `140` ($d=7$, `143..186` open).
+
+### Track S1/S2 — Structural, Exact & Barrier Theorems (`ShannonC7/StructuralBounds.lean`, `ShannonC7/Tests/StructuralTests.lean`)
+- **General odd-cycle square exactness:** `oddCycle_pow2_indepNum` and `oddCycle_pow2_indepNum_eq_div` prove $\alpha(C_{2k+1}^{\boxtimes 2}) = k^2 + \lfloor k/2 \rfloor = \lfloor k(2k+1)/2 \rfloor$ for all $k \ge 1$ (`1, 5, 10, 18, 27` for $k=1..5$), via `cycleGraph_sliceDoubleCount` and `oddCycle_indepNum` (correcting an earlier draft typo `k(2k+1) + ⌊k/2⌋`).
+- **Fractional clique cover, Lovász complement & $\mathbb{Q}(\cos(\pi/7))$, torus packing & Rosenfeld equivalence:**
+  - `FracCliqueCover`, `FracIndepSet`, weak duality, `shannonCapacity_le_fracCliqueCoverNum`, `IsVertexTransitive`, `c7_fracCliqueCoverNum` ($7/2$), `c7_compl_fracCliqueCoverNum` ($7/3$), and trig-free upper bounds `c7_upper_fracCliqueCover` ($\Theta(C_7) \le 7/2$) and `c7_compl_upper_fracCliqueCover` ($\Theta(\overline{C_7}) \le 7/3$).
+  - `lovaszThetaOddCycle_mul_compl`, `lovaszThetaC7_mul_compl` ($\vartheta(C_7)\vartheta(\overline{C_7}) = 7$), `c7_shannonCapacity_mul_compl_le` ($\Theta(C_7)\Theta(\overline{C_7}) \le 7$), and exact $\mathbb{Q}(\cos(\pi/7))$ polynomial/cubic identities (`cos_pi_div_seven_inv_eq_poly`, `lovaszThetaC7_eq_poly_cos`, `lovaszThetaC7Compl_eq_poly_cos`, `lovaszThetaC7_sub_compl`, `lovaszThetaC7Compl_cubic`).
+  - $2^d$-torus box packing (`torusBox`, `c7Pow_isIndepSet_iff_pairwiseDisjoint_boxes`, `c7Pow_volume_bound`, $L_\infty \ge 2$ via `c7Pow_isIndepSet_iff_linf_ge_two`), cohomomorphism monotonicity (`shannonCapacity_mono_cohom`), `c7_prod_compl_shannonCapacity_ge_seven`, clique/disjoint blowups, and Rosenfeld $k$-fold equivalence (`lexIndepBlowup_indepNum`, `fracCliqueCoverNum_le_of_lexBlowup_cliqueCover`, `exists_lexBlowup_cliqueCover_of_fracCliqueCover`).
+- **Barrier & obstruction theorems:**
+  - Unified primal/dual SDP (`lovaszTheta`, `schrijverTheta`, `SchrijverCert`, `indepNum_le_schrijverTheta`).
+  - `Gilbert32` ($\mathrm{Fin}\,32$, Hamming distance $\in \{1,2\}$): `gilbert32_indep_four` ($\alpha = 4$), `gilbert32_sq_indep_twenty` ($\alpha(G_{32}^{\boxtimes 2}) \ge 20$), `gilbert32_schrijverTheta_eq_four` ($\vartheta'(G_{32}) = 4$), `gilbert32_schrijver_fails_submult` ($\vartheta'(G_{32})^2 = 16 < 20$), and `gilbert32_lovaszTheta_eq` ($16/3$).
+  - `Haemers27` ($\mathrm{srg}(27,10,1,5)$) & `Schlafli27` ($\mathrm{srg}(27,16,10,8)$): `haemers27_minrank_le_seven` (all fields `F`; `= 7` for `haemers27FittingMatrix` under `[CharZero F]`), `haemers27_lovaszTheta_eq_nine` ($\vartheta = 9$), `haemers27_haemers_beats_lovasz` ($\Theta(H_{27}) \le 7 < 9 = \vartheta(H_{27})$), `schlafli27_exact` ($\alpha = \Theta = \vartheta = 3$), and `haemers27_schlafli27_gate_g3` ($7 \cdot 3 = 21 < 27$).
+  - Bukh–Cox fractional Haemers bound (`FracHaemersRep`, `fracHaemers`, `shannonCapacity_le_fracHaemers`): `fracHaemers_oddCycle` ($\mathcal{H}_f^{\mathbb{F}}(C_{2k+1}) = (2k+1)/2$ for $k \ge 2$ over every field `F`), `fracHaemers_c7` ($7/2$), and `lovaszThetaC7_lt_fracHaemers_c7` ($\vartheta(C_7) < \mathcal{H}_f^{\mathbb{F}}(C_7)$).
+- **Verified clean:**
+  - `LEAN_NUM_THREADS=4 lake build ShannonC7.ComplementLower ShannonC7.StructuralBounds ShannonC7.Tests.StructuralTests`: **0 errors, 0 warnings** (`2752` jobs).
+  - `./scripts/verify_axioms.sh --verbose ShannonC7.ComplementLower ShannonC7.StructuralBounds ShannonC7.Tests.StructuralTests`: **PASSED** (`784` total declarations / `117` public theorems across `3` modules; `0` forbidden tokens; `axioms ⊆ [propext, Classical.choice, Quot.sound]`).
+  - `find verify -name "__pycache__" -o -name "*.pyc"`: empty.
+  - (Pending M4 final integration: importing `ComplementLower` and `StructuralBounds` into `Main.lean` and updating `RESULTS.md`.)
