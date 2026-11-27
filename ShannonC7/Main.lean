@@ -11,6 +11,7 @@ import ShannonC7.SmallPowers
 import ShannonC7.ValidTuple
 import ShannonC7.HeteroLayered
 import ShannonC7.FrontierLower
+import ShannonC7.PortfolioLower
 import ShannonC7.AlphaC7Cube
 import ShannonC7.FinitePowerUpper
 
